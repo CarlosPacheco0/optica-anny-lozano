@@ -48,7 +48,7 @@ export const AboutSection: React.FC = () => {
 
               <div className="relative overflow-hidden rounded-[2rem] border border-[#113D47]/10 bg-[#F4F6F5] shadow-[0_24px_55px_rgba(17,61,71,0.1)]">
                 <img
-                  src="/images/specialist-care.jpg"
+                  src={`${import.meta.env.BASE_URL}images/specialist-care.jpg`}
                   alt="Atención clínica de optometría y contactología"
                   className="aspect-[4/3] w-full object-cover"
                 />

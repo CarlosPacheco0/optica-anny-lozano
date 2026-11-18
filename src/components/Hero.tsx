@@ -112,7 +112,7 @@ export const Hero: React.FC = () => {
               <div className="relative overflow-hidden rounded-[1.75rem] border border-white/80 bg-white p-2 sm:p-2.5 shadow-[0_24px_60px_rgba(17,61,71,0.12)]">
                 <div className="relative aspect-[4/3] sm:aspect-[3/4] overflow-hidden rounded-[1.35rem] bg-[#EAF6FA]">
                   <img
-                    src="/images/hero-clinic.jpg"
+                    src={`${import.meta.env.BASE_URL}images/hero-clinic.jpg`}
                     alt="Consultorio de Optometría y Contactología Dra. Anny Lozano Santos"
                     className="h-full w-full object-cover"
                   />
