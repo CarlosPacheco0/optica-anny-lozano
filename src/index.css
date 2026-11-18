@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --color-petrol-950: #0B2A32;
+  --color-petrol-900: #113D47;
+  --color-petrol-800: #194E5A;
+  --color-petrol-700: #266472;
+
+  --color-cerulean-600: #3A89A3;
+  --color-cerulean-500: #4B9EB8;
+  --color-cerulean-400: #6FB5CA;
+  --color-cerulean-200: #CBE8F1;
+  --color-cerulean-100: #E5F4F8;
+  --color-cerulean-50: #F3FAFC;
+
+  --color-mint-600: #388D81;
+  --color-mint-500: #49A699;
+  --color-mint-100: #E3F4F1;
+
+  --color-stone-warm-600: #5F6665;
+  --color-stone-warm-500: #757D7B;
+  --color-stone-warm-200: #E4E7E6;
+  --color-stone-warm-100: #F4F6F5;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-padding-top: 5.5rem;
+  }
+
+  h1, h2, .font-editorial {
+    font-family: var(--font-serif);
+  }
+}
+
+.clinical-gradient {
+  background: linear-gradient(160deg, #F5FBFD 0%, #EAF6FA 48%, #FFFFFF 100%);
+}
+
+.soft-aqua-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(75, 158, 184, 0.16) 0%, rgba(203, 232, 241, 0.06) 55%, rgba(255, 255, 255, 0) 75%);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

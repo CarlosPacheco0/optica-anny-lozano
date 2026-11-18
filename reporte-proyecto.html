@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#113D47" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='100' y2='100' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23113D47'/%3E%3Cstop offset='100%25' stop-color='%234B9EB8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23bg)'/%3E%3Cg transform='translate(8 8) scale(0.84)'%3E%3Cpath d='M42 18C26 26 19 42 20 56C21 67 27 75 35 80' stroke='%23FFFFFF' stroke-width='4.2' stroke-linecap='round'/%3E%3Cpath d='M41 29C31 36 27 48 29 59C30 66 34 71 39 74' stroke='%23CBE8F1' stroke-width='3.2' stroke-linecap='round'/%3E%3Cellipse cx='36.5' cy='52' rx='6.6' ry='12' fill='%23FFFFFF'/%3E%3Cellipse cx='34.5' cy='48.5' rx='2.3' ry='3.4' fill='%23113D47'/%3E%3Cpath d='M41 16C57 12 75 17 85 29' stroke='%23FFFFFF' stroke-width='4.2' stroke-linecap='round'/%3E%3Cpath d='M44 17C50 38 45 64 34 79C29 85 24 84 26 78C29 70 46 69 62 74C75 78 86 73 91 63' stroke='%23FFFFFF' stroke-width='4.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M45 20C54 44 62 67 74 83C78 88 85 87 89 82' stroke='%23FFFFFF' stroke-width='4.3' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <title>Avance Página Web | Dra. Anny Lozano Santos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --petrol-950: #0b2a32;
+        --petrol-900: #113d47;
+        --petrol-800: #194e5a;
+        --cerulean-600: #3a89a3;
+        --cerulean-500: #4b9eb8;
+        --cerulean-200: #cbe8f1;
+        --cerulean-100: #e5f4f8;
+        --cerulean-50: #f3fafc;
+        --mint-600: #388d81;
+        --mint-500: #49a699;
+        --mint-100: #e3f4f1;
+        --stone-600: #5f6665;
+        --stone-500: #757d7b;
+        --stone-100: #f4f6f5;
+        --amber-bg: #fef7e6;
+        --amber-text: #9a6507;
+        --rose-bg: #fff1f2;
+        --rose-text: #be123c;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+        background: #f4f8fa;
+        color: var(--petrol-900);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1, h2, h3, .serif {
+        font-family: "Cormorant Garamond", Georgia, serif;
+      }
+
+      .page {
+        max-width: 980px;
+        margin: 28px auto 56px;
+        padding: 0 18px;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .toolbar-note {
+        font-size: 12.5px;
+        color: var(--stone-600);
+      }
+
+      .print-btn {
+        appearance: none;
+        border: none;
+        background: var(--petrol-900);
+        color: #fff;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(17, 61, 71, 0.14);
+        transition: background 0.2s ease, transform 0.15s ease;
+      }
+
+      .print-btn:hover {
+        background: var(--petrol-800);
+        transform: translateY(-1px);
+      }
+
+      .report-shell {
+        background: #fff;
+        border-radius: 26px;
+        border: 1px solid rgba(17, 61, 71, 0.08);
+        box-shadow: 0 22px 54px rgba(17, 61, 71, 0.07);
+        overflow: hidden;
+      }
+
+      /* Header */
+      .report-header {
+        background: linear-gradient(135deg, #0b2a32 0%, #113d47 60%, #1d5d6d 100%);
+        color: #fff;
+        padding: 40px 42px 34px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .report-header::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        right: -70px;
+        top: -90px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(75, 158, 184, 0.28), transparent 70%);
+        pointer-events: none;
+      }
+
+      .header-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 6px 13px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--cerulean-200);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mint-500);
+      }
+
+      .meta-location {
+        font-size: 12px;
+        color: rgba(203, 232, 241, 0.85);
+      }
+
+      .report-header h1 {
+        font-size: 40px;
+        line-height: 1.08;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .report-header .subtitle {
+        font-size: 14.5px;
+        color: rgba(229, 244, 248, 0.88);
+        max-width: 650px;
+      }
+
+      .summary-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 26px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .summary-box {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 13px 15px;
+      }
+
+      .summary-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(203, 232, 241, 0.78);
+      }
+
+      .summary-value {
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 3px;
+      }
+
+      /* Body */
+      .report-body {
+        padding: 38px 42px 44px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-kicker {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--cerulean-600);
+        background: var(--cerulean-100);
+        padding: 4px 12px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+      }
+
+      .section h2 {
+        font-size: 31px;
+        font-weight: 600;
+        line-height: 1.15;
+        color: var(--petrol-900);
+        margin-bottom: 8px;
+      }
+
+      .section-intro {
+        font-size: 14px;
+        color: var(--stone-600);
+        margin-bottom: 20px;
+        max-width: 740px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .info-card {
+        background: var(--cerulean-50);
+        border: 1px solid rgba(17, 61, 71, 0.08);
+        border-radius: 18px;
+        padding: 18px 20px;
+      }
+
+      .info-card h3 {
+        font-size: 21px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--petrol-900);
+      }
+
+      .info-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .info-list li {
+        font-size: 13.5px;
+        color: #2b4b53;
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+      }
+
+      .dot {
+        flex-shrink: 0;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mint-500);
+        margin-top: 8px;
+      }
+
+      /* Palette Swatches */
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .swatch {
+        border: 1px solid rgba(17, 61, 71, 0.1);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .swatch-color {
+        height: 48px;
+      }
+
+      .swatch-meta {
+        padding: 9px 11px;
+      }
+
+      .swatch-name {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--petrol-900);
+      }
+
+      .swatch-hex {
+        font-size: 11px;
+        color: var(--stone-500);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      /* Structure list (clean table on desktop, stacked cards on mobile) */
+      .structure-list {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(17, 61, 71, 0.1);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .structure-row {
+        display: grid;
+        grid-template-columns: 220px 1fr 125px;
+        gap: 16px;
+        align-items: start;
+        padding: 15px 18px;
+        border-bottom: 1px solid rgba(17, 61, 71, 0.07);
+        background: #fff;
+      }
+
+      .structure-row.head {
+        background: var(--cerulean-50);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--petrol-900);
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      .structure-row:last-child {
+        border-bottom: none;
+      }
+
+      .sec-name {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--petrol-900);
+      }
+
+      .sec-desc {
+        font-size: 13px;
+        color: #2b4b53;
+      }
+
+      .pill {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+
+      .pill-approved {
+        background: var(--mint-100);
+        color: var(--mint-600);
+      }
+
+      .pill-updated {
+        background: var(--cerulean-100);
+        color: var(--cerulean-600);
+      }
+
+      .pill-high {
+        background: var(--rose-bg);
+        color: var(--rose-text);
+      }
+
+      .pill-medium {
+        background: var(--amber-bg);
+        color: var(--amber-text);
+      }
+
+      .pill-low {
+        background: var(--stone-100);
+        color: var(--stone-600);
+      }
+
+      /* Missing Info Checklist */
+      .missing-group {
+        margin-bottom: 24px;
+      }
+
+      .missing-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .missing-group-title {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .missing-group-title h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--petrol-900);
+      }
+
+      .checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .check-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        padding: 15px 17px;
+        border-radius: 16px;
+        border: 1px solid rgba(17, 61, 71, 0.1);
+        background: #fff;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .check-item:hover {
+        border-color: rgba(75, 158, 184, 0.55);
+        background: #fbfdfe;
+      }
+
+      .check-item:has(input:checked) {
+        background: #f5fbf9;
+        border-color: rgba(73, 166, 153, 0.45);
+      }
+
+      .check-item:has(input:checked) .check-title {
+        text-decoration: line-through;
+        color: var(--stone-500);
+      }
+
+      .check-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 3px;
+        accent-color: var(--mint-500);
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .check-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .check-title {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--petrol-900);
+      }
+
+      .check-desc {
+        font-size: 13px;
+        color: var(--stone-600);
+        margin-top: 4px;
+      }
+
+      .check-current {
+        display: inline-block;
+        margin-top: 7px;
+        font-size: 11.5px;
+        color: var(--cerulean-600);
+        background: var(--cerulean-50);
+        padding: 3px 9px;
+        border-radius: 8px;
+      }
+
+      .report-footer {
+        background: var(--cerulean-50);
+        border-top: 1px solid rgba(17, 61, 71, 0.08);
+        padding: 20px 42px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        color: var(--stone-600);
+      }
+
+      /* Mobile optimization (only on screens, so A4 PDF keeps desktop grid layout) */
+      @media screen and (max-width: 768px) {
+        .page {
+          margin: 14px auto 36px;
+          padding: 0 12px;
+        }
+
+        .toolbar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .print-btn {
+          width: 100%;
+          text-align: center;
+          padding: 12px 18px;
+        }
+
+        .report-shell {
+          border-radius: 20px;
+        }
+
+        .report-header,
+        .report-body,
+        .report-footer {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .report-header {
+          padding-top: 28px;
+          padding-bottom: 26px;
+        }
+
+        .report-header h1 {
+          font-size: 32px;
+        }
+
+        .report-body {
+          padding-top: 28px;
+          padding-bottom: 32px;
+        }
+
+        .section h2 {
+          font-size: 26px;
+        }
+
+        .summary-strip,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .swatches {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .structure-list {
+          border: none;
+          gap: 10px;
+          background: transparent;
+        }
+
+        .structure-row.head {
+          display: none;
+        }
+
+        .structure-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          border: 1px solid rgba(17, 61, 71, 0.1);
+          border-radius: 16px;
+          padding: 15px 16px;
+        }
+
+        .check-item {
+          padding: 14px;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        body {
+          background: #fff;
+        }
+        .toolbar {
+          display: none !important;
+        }
+        .page {
+          margin: 0;
+          max-width: 100%;
+          padding: 0;
+        }
+        .report-shell {
+          box-shadow: none;
+          border: none;
+          border-radius: 0;
+        }
+        .report-header {
+          padding: 28px 30px 24px;
+          border-radius: 16px;
+        }
+        .report-body {
+          padding: 26px 8px 18px;
+        }
+        .section {
+          margin-bottom: 26px;
+        }
+        .section:nth-of-type(2) {
+          break-before: page;
+        }
+        .section-kicker {
+          display: table;
+          break-after: avoid;
+        }
+        .section h2,
+        .section-intro,
+        .missing-group-title {
+          break-after: avoid;
+        }
+        .check-item,
+        .info-card,
+        .structure-row,
+        .swatch,
+        .missing-group-title {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="toolbar">
+        <span class="toolbar-note">
+          Puedes marcar cada punto recibido o guardar este documento en PDF.
+        </span>
+        <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+      </div>
+
+      <article class="report-shell">
+        <header class="report-header">
+          <div class="header-top">
+            <span class="badge">
+              <span class="badge-dot"></span>
+              Avance de Página Web
+            </span>
+            <span class="meta-location">Ocaña, Norte de Santander</span>
+          </div>
+
+          <h1>Dra. Anny Lozano Santos</h1>
+          <p class="subtitle">
+            Resumen de cómo está organizada actualmente la página web, los datos que ya se
+            encuentran cargados y la información pendiente por definir para dejarla lista.
+          </p>
+
+          <div class="summary-strip">
+            <div class="summary-box">
+              <div class="summary-label">Objetivo principal</div>
+              <div class="summary-value">Servicios y citas por WhatsApp</div>
+            </div>
+            <div class="summary-box">
+              <div class="summary-label">Secciones activas</div>
+              <div class="summary-value">6 secciones principales</div>
+            </div>
+            <div class="summary-box">
+              <div class="summary-label">Estado actual</div>
+              <div class="summary-value">Diseño base listo para revisión</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="report-body">
+          <!-- 1. LO QUE YA TENEMOS -->
+          <section class="section">
+            <span class="section-kicker">01 · Situación actual</span>
+            <h2>Qué tenemos listo hasta ahora</h2>
+            <p class="section-intro">
+              La página ya cuenta con su estructura completa adaptada a computador y celular,
+              tomando como referencia la identidad visual y los datos del perfil de Instagram.
+            </p>
+
+            <div class="grid-2">
+              <div class="info-card">
+                <h3>Datos reales ya incluidos</h3>
+                <ul class="info-list">
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Nombre:</strong> Dra. Anny Lozano Santos (Dra. Anny Carolina Lozano Santos).</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Especialidad:</strong> Optometría y Contactología, Especialista en Segmento Anterior y Lentes de Contacto.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Dirección:</strong> Cra. 14 #11-20, Local 6, Ocaña, N. de S., con mapa de Google Maps integrado.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Redes y contacto:</strong> Enlace a Instagram (@opt_annylozanos) y acceso directo al enlace QR de WhatsApp.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Mensajes de marca:</strong> Frases propias del consultorio como <em>“Ver bien no es solo leer letras.”</em> y <em>“Cada detalle cuenta”</em>.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-card">
+                <h3>Funcionamiento de reservas</h3>
+                <ul class="info-list">
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Gestión manual en WhatsApp:</strong> Las citas llegan directamente al chat para ser confirmadas manualmente según disponibilidad.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Mensaje ordenado automáticamente:</strong> El paciente indica nombre, servicio, fecha opcional y jornada (mañana, tarde o flexible), y el chat se abre listo para enviar.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Selección desde cada servicio:</strong> Al tocar “Reservar” en cualquier tarjeta, la página lleva al formulario con ese servicio elegido.</span>
+                  </li>
+                  <li>
+                    <span class="dot"></span>
+                    <span><strong>Versión móvil pensada para Instagram:</strong> Formulario primero en celular, tarjetas deslizables y botones cómodos para pantalla táctil.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. IDENTIDAD VISUAL -->
+          <section class="section">
+            <span class="section-kicker">02 · Línea gráfica</span>
+            <h2>Colores y estilo visual</h2>
+            <p class="section-intro">
+              Se tomaron los tonos presentes en las piezas de Instagram, tarjetas de presentación,
+              uniforme y consultorio.
+            </p>
+
+            <div class="swatches">
+              <div class="swatch">
+                <div class="swatch-color" style="background: #113d47"></div>
+                <div class="swatch-meta">
+                  <div class="swatch-name">Petróleo</div>
+                  <div class="swatch-hex">#113D47</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #4b9eb8"></div>
+                <div class="swatch-meta">
+                  <div class="swatch-name">Azul Marca</div>
+                  <div class="swatch-hex">#4B9EB8</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #49a699"></div>
+                <div class="swatch-meta">
+                  <div class="swatch-name">Verde Menta</div>
+                  <div class="swatch-hex">#49A699</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #eaf6fa"></div>
+                <div class="swatch-meta">
+                  <div class="swatch-name">Celeste Suave</div>
+                  <div class="swatch-hex">#EAF6FA</div>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #5f6665"></div>
+                <div class="swatch-meta">
+                  <div class="swatch-name">Gris Neutro</div>
+                  <div class="swatch-hex">#5F6665</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. ESTRUCTURA ACTUAL -->
+          <section class="section">
+            <span class="section-kicker">03 · Estructura</span>
+            <h2>Cómo está conformada la página</h2>
+            <p class="section-intro">
+              Orden actual de cada apartado desde la parte superior hasta el cierre de la página.
+            </p>
+
+            <div class="structure-list">
+              <div class="structure-row head">
+                <div>Apartado</div>
+                <div>Qué incluye</div>
+                <div>Estado</div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">1. Menú superior e Inicio</div>
+                <div class="sec-desc">
+                  Barra fija con logo adaptable en celular, menú móvil con cierre al tocar afuera, titular principal, botones de acción rápida, resumen de especialidad, foto principal y sello circular.
+                </div>
+                <div><span class="pill pill-approved">Aprobado</span></div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">2. Nuestros Servicios</div>
+                <div class="sec-desc">
+                  6 tarjetas una al lado de la otra con inclinación sutil diferenciada, desplazamiento lateral con flechas en computador, paginación táctil con contador en celular, detalle desplegable y botón directo para reservar.
+                </div>
+                <div><span class="pill pill-updated">Actualizado</span></div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">3. Agenda tu consulta</div>
+                <div class="sec-desc">
+                  Formulario corto para preparar la cita hacia WhatsApp (nombre, servicio, fecha, jornada y nota opcional) con vista previa del mensaje. En celular el formulario aparece primero y sin zoom automático al escribir.
+                </div>
+                <div><span class="pill pill-approved">Aprobado</span></div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">4. Conoce a tu Especialista</div>
+                <div class="sec-desc">
+                  Fotografía de consulta, presentación de la Dra. Anny Lozano Santos y 4 puntos clave sobre su forma de trabajo y especialidad en Segmento Anterior y Lentes de Contacto.
+                </div>
+                <div><span class="pill pill-approved">Aprobado</span></div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">5. Preguntas Frecuentes</div>
+                <div class="sec-desc">
+                  En computador se muestra en 2 columnas (acordeón numerado + atención directa por WhatsApp e Instagram). En celular prioriza las preguntas arriba y deja el bloque de contacto justo debajo.
+                </div>
+                <div><span class="pill pill-updated">Actualizado</span></div>
+              </div>
+
+              <div class="structure-row">
+                <div class="sec-name">6. Visítanos y Pie de página</div>
+                <div class="sec-desc">
+                  Dirección en Ocaña, horarios, botones adaptados para celular a WhatsApp e Instagram, mapa embebido con ruta en Google Maps, pie de página con margen libre y botón flotante para agendar.
+                </div>
+                <div><span class="pill pill-approved">Aprobado</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. INFORMACION FALTANTE -->
+          <section class="section">
+            <span class="section-kicker">04 · Pendientes</span>
+            <h2>Información faltante por parte del cliente</h2>
+            <p class="section-intro">
+              Para reemplazar los textos e imágenes de referencia y dejar la página lista para
+              publicar, necesitamos confirmar los siguientes puntos:
+            </p>
+
+            <div class="missing-group">
+              <div class="missing-group-title">
+                <h3>Necesario para publicar</h3>
+                <span class="pill pill-high">Prioridad alta</span>
+              </div>
+              <div class="checklist">
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">1. Número oficial de WhatsApp (con indicativo +57)</span>
+                    <p class="check-desc">
+                      Es necesario el número real para que el botón de reserva abra WhatsApp con los datos del paciente ya escritos. El enlace QR sirve para abrir el chat, pero no pre-llena el formulario.
+                    </p>
+                    <span class="check-current">Actualmente con número de prueba</span>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">2. Lista definitiva de servicios y duraciones</span>
+                    <p class="check-desc">
+                      Revisar los 6 servicios actuales para confirmar nombres, quitar o añadir los que manejen y confirmar si incluyen venta de monturas y gafas en el local.
+                    </p>
+                    <span class="check-current">Actualmente con 6 servicios base propuestos</span>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">3. Horarios reales de atención</span>
+                    <p class="check-desc">
+                      Confirmar días de atención, franjas de mañana y tarde (o jornada continua), horario de sábados y si atienden únicamente con cita previa.
+                    </p>
+                    <span class="check-current">Actualmente con horario referencial</span>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">4. Archivo original del logo</span>
+                    <p class="check-desc">
+                      Compartir el logo en buena calidad sin fondo (PNG transparente, PDF o archivo vectorial), tanto la versión principal como el sello circular si lo tienen.
+                    </p>
+                    <span class="check-current">Actualmente con recreación provisional del logo</span>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">5. Fotografías reales del consultorio y la doctora</span>
+                    <p class="check-desc">
+                      Entre 3 y 5 fotos originales en buena resolución (sin capturas de pantalla ni textos encima): espacio del consultorio, equipos y foto profesional de la Dra. Anny.
+                    </p>
+                    <span class="check-current">Actualmente con 2 imágenes de referencia</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="missing-group">
+              <div class="missing-group-title">
+                <h3>Recomendado para completar la información</h3>
+                <span class="pill pill-medium">Opcional recomendado</span>
+              </div>
+              <div class="checklist">
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">6. Breve reseña profesional de la Dra. Anny</span>
+                    <p class="check-desc">
+                      Universidad, especialización, años de experiencia o datos que desee destacar en el apartado “Conoce a tu Especialista”.
+                    </p>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">7. Medios de pago y convenios</span>
+                    <p class="check-desc">
+                      Indicar si es consulta particular únicamente o si reciben convenios, además de medios de pago (efectivo, Nequi, Bancolombia, tarjeta) y si desean mostrar tarifas o dejarlas por WhatsApp.
+                    </p>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">8. Ajuste de Preguntas Frecuentes</span>
+                    <p class="check-desc">
+                      Validar las 5 preguntas actuales o sumar las dudas que más les escriben a diario por WhatsApp e Instagram.
+                    </p>
+                  </div>
+                </label>
+
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">9. Enlace exacto de Google Maps (si ya tienen ficha)</span>
+                    <p class="check-desc">
+                      Si el consultorio ya está registrado en Google Maps, compartir el enlace para apuntar al marcador exacto del Local 6.
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="missing-group">
+              <div class="missing-group-title">
+                <h3>Para publicación en internet</h3>
+                <span class="pill pill-low">Paso final</span>
+              </div>
+              <div class="checklist">
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <div class="check-content">
+                    <span class="check-title">10. Dominio web</span>
+                    <p class="check-desc">
+                      Definir si se comprará dominio propio (por ejemplo, draannylozano.com) para colocarlo en el perfil de Instagram o si se iniciará con un enlace de prueba.
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <footer class="report-footer">
+          <span>Dra. Anny Lozano Santos · Optometría y Contactología</span>
+          <span>Cra. 14 #11-20, Local 6 · Ocaña, N. de S.</span>
+        </footer>
+      </article>
+    </div>
+  </body>
+</html>
