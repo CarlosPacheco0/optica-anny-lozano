@@ -4,45 +4,62 @@
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
-  --color-petrol-950: #0B2A32;
-  --color-petrol-900: #113D47;
-  --color-petrol-800: #194E5A;
-  --color-petrol-700: #266472;
+  /* Opción 1: Enfoque Clínico y Tecnológico */
+  --color-brand-blue-950: #071C2E;
+  --color-brand-blue-900: #092338;
+  --color-brand-blue-800: #0F4C81;
+  --color-brand-blue-700: #195E9C;
+  --color-brand-blue-600: #2570B3;
+  --color-brand-blue-100: #E1EFF9;
+  --color-brand-blue-50: #F0F7FD;
 
-  --color-cerulean-600: #3A89A3;
-  --color-cerulean-500: #4B9EB8;
-  --color-cerulean-400: #6FB5CA;
-  --color-cerulean-200: #CBE8F1;
-  --color-cerulean-100: #E5F4F8;
-  --color-cerulean-50: #F3FAFC;
+  --color-brand-teal-700: #0F766E;
+  --color-brand-teal-600: #0D9488;
+  --color-brand-teal-500: #14B8A6;
+  --color-brand-teal-100: #CCFBF1;
+  --color-brand-teal-50: #F0FDFA;
 
-  --color-mint-600: #388D81;
-  --color-mint-500: #49A699;
-  --color-mint-100: #E3F4F1;
-
-  --color-stone-warm-600: #5F6665;
-  --color-stone-warm-500: #757D7B;
-  --color-stone-warm-200: #E4E7E6;
-  --color-stone-warm-100: #F4F6F5;
+  --color-slate-text-main: #1E293B;
+  --color-slate-text-muted: #64748B;
+  --color-slate-surface: #F8FAFC;
+  --color-slate-border: #E2E8F0;
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
     scroll-padding-top: 5.5rem;
+    background-color: #F8FAFC;
+    color: #1E293B;
   }
 
-  h1, h2, .font-editorial {
+  body {
+    background-color: #F8FAFC;
+    color: #1E293B;
+  }
+
+  h1,
+  h2,
+  .font-editorial {
     font-family: var(--font-serif);
   }
 }
 
 .clinical-gradient {
-  background: linear-gradient(160deg, #F5FBFD 0%, #EAF6FA 48%, #FFFFFF 100%);
+  background: linear-gradient(160deg, #F8FAFC 0%, #F0F7FD 48%, #FFFFFF 100%);
+}
+
+.hero-gradient-mesh {
+  background-color: #F8FAFC;
+  background-image:
+    radial-gradient(at 12% 15%, rgba(15, 76, 129, 0.15) 0px, transparent 52%),
+    radial-gradient(at 88% 18%, rgba(13, 148, 136, 0.18) 0px, transparent 48%),
+    radial-gradient(at 50% 90%, rgba(15, 76, 129, 0.09) 0px, transparent 55%),
+    radial-gradient(at 85% 85%, rgba(13, 148, 136, 0.12) 0px, transparent 45%);
 }
 
 .soft-aqua-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(75, 158, 184, 0.16) 0%, rgba(203, 232, 241, 0.06) 55%, rgba(255, 255, 255, 0) 75%);
+  background: radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.12) 0%, rgba(15, 76, 129, 0.05) 50%, rgba(248, 250, 252, 0) 75%);
 }
 
 .no-scrollbar {

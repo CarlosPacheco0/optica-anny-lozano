@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesSection } from './components/ServicesSection';
+import { ClinicalPillarsBanner } from './components/ClinicalPillarsBanner';
+import { VisualQuizSection } from './components/VisualQuizSection';
 import { BookingSection } from './components/BookingSection';
 import { AboutSection } from './components/AboutSection';
 import { FaqSection } from './components/FaqSection';
@@ -22,8 +24,15 @@ export function App() {
     }
   };
 
+  const handleSelectServiceFromQuiz = (serviceId: string, note?: string) => {
+    setSelectedServiceId(serviceId);
+    if (note) {
+      setBookingNote(note);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white text-[#113D47]">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#1E293B]">
       <Navbar />
       <main>
         <Hero />
@@ -31,6 +40,8 @@ export function App() {
           selectedServiceId={selectedServiceId}
           onSelectServiceForBooking={handleSelectServiceForBooking}
         />
+        <ClinicalPillarsBanner />
+        <VisualQuizSection onSelectServiceForBooking={handleSelectServiceFromQuiz} />
         <BookingSection
           selectedServiceId={selectedServiceId}
           onChangeServiceId={setSelectedServiceId}

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 interface BrandLogoProps {
-  variant?: 'horizontal' | 'seal' | 'mark';
-  tone?: 'dark' | 'light' | 'brand';
+  variant?: "horizontal" | "seal" | "mark";
+  tone?: "dark" | "light" | "brand";
   className?: string;
 }
 
@@ -11,7 +11,9 @@ interface BrandLogoProps {
  * visual de la Dra. Anny Lozano Santos.
  * TODO: Reemplazar con el archivo SVG/PNG oficial cuando la doctora lo entregue.
  */
-export const BrandMark: React.FC<{ className?: string }> = ({ className = 'w-11 h-11' }) => (
+export const BrandMark: React.FC<{ className?: string }> = ({
+  className = "w-11 h-11",
+}) => (
   <svg
     viewBox="0 0 100 100"
     fill="none"
@@ -35,7 +37,14 @@ export const BrandMark: React.FC<{ className?: string }> = ({ className = 'w-11 
     />
     {/* Iris y pupila */}
     <ellipse cx="36.5" cy="52" rx="6.2" ry="11.5" fill="currentColor" />
-    <ellipse cx="34.5" cy="48.5" rx="2.1" ry="3.2" fill="white" fillOpacity="0.88" />
+    <ellipse
+      cx="34.5"
+      cy="48.5"
+      rx="2.1"
+      ry="3.2"
+      fill="white"
+      fillOpacity="0.88"
+    />
 
     {/* Trazo caligráfico superior C / L */}
     <path
@@ -63,45 +72,45 @@ export const BrandMark: React.FC<{ className?: string }> = ({ className = 'w-11 
 );
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
-  variant = 'horizontal',
-  tone = 'dark',
-  className = '',
+  variant = "horizontal",
+  tone = "dark",
+  className = "",
 }) => {
   const palette = {
     dark: {
-      mark: 'text-[#4B9EB8]',
-      title: 'text-[#113D47]',
-      sub: 'text-[#5F6665]',
+      mark: "text-[#4B9EB8]",
+      title: "text-[#113D47]",
+      sub: "text-[#5F6665]",
     },
     light: {
-      mark: 'text-[#CBE8F1]',
-      title: 'text-white',
-      sub: 'text-[#CBE8F1]/80',
+      mark: "text-[#CBE8F1]",
+      title: "text-white",
+      sub: "text-[#CBE8F1]/80",
     },
     brand: {
-      mark: 'text-[#4B9EB8]',
-      title: 'text-[#113D47]',
-      sub: 'text-[#4B9EB8]',
+      mark: "text-[#4B9EB8]",
+      title: "text-[#113D47]",
+      sub: "text-[#4B9EB8]",
     },
   }[tone];
 
-  if (variant === 'mark') {
+  if (variant === "mark") {
     return <BrandMark className={`${palette.mark} ${className}`} />;
   }
 
-  if (variant === 'seal') {
+  if (variant === "seal") {
     return (
-      <div className={`relative inline-flex items-center justify-center ${className}`}>
-        <svg viewBox="0 0 180 180" className="w-full h-full text-[#4B9EB8]" aria-hidden="true">
+      <div
+        className={`relative inline-flex items-center justify-center ${className}`}
+      >
+        <svg
+          viewBox="0 0 180 180"
+          className="w-full h-full text-[#4B9EB8]"
+          aria-hidden="true"
+        >
           <defs>
-            <path
-              id="topArc"
-              d="M 24,90 A 66,66 0 1,1 156,90"
-            />
-            <path
-              id="bottomArc"
-              d="M 20,90 A 70,70 0 0,0 160,90"
-            />
+            <path id="topArc" d="M 24,90 A 66,66 0 1,1 156,90" />
+            <path id="bottomArc" d="M 20,90 A 70,70 0 0,0 160,90" />
           </defs>
           <text
             fill="currentColor"
@@ -135,7 +144,9 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 
   return (
     <div className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
-      <BrandMark className={`h-8 w-8 sm:h-10 sm:w-10 shrink-0 ${palette.mark}`} />
+      <BrandMark
+        className={`h-8 w-8 sm:h-10 sm:w-10 shrink-0 ${palette.mark}`}
+      />
       <div className="leading-none">
         <span
           className={`block font-editorial text-[1.12rem] sm:text-[1.35rem] font-semibold tracking-tight whitespace-nowrap ${palette.title}`}
