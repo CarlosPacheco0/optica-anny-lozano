@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   MessageCircle,
   CalendarDays,
@@ -8,15 +8,14 @@ import {
   Send,
   User,
   Stethoscope,
-  Sparkles,
   Check,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   CLINIC_CONFIG,
   CLINIC_SERVICES,
   buildWhatsAppUrl,
   formatBookingMessage,
-} from '../config/clinic';
+} from "../config/clinic";
 
 interface BookingSectionProps {
   selectedServiceId: string;
@@ -26,26 +25,41 @@ interface BookingSectionProps {
 }
 
 const SHIFTS = [
-  { id: 'Mañana (8:00 a.m. - 12:00 m.)', label: 'Mañana', sub: '8:00 a 12:00', icon: Sun },
-  { id: 'Tarde (2:00 p.m. - 6:00 p.m.)', label: 'Tarde', sub: '2:00 a 6:00', icon: Sunset },
-  { id: 'Cualquier horario disponible', label: 'Flexible', sub: 'Cualquiera', icon: Clock },
+  {
+    id: "Mañana (8:00 a.m. - 12:00 m.)",
+    label: "Mañana",
+    sub: "8:00 a 12:00",
+    icon: Sun,
+  },
+  {
+    id: "Tarde (2:00 p.m. - 6:00 p.m.)",
+    label: "Tarde",
+    sub: "2:00 a 6:00",
+    icon: Sunset,
+  },
+  {
+    id: "Cualquier horario disponible",
+    label: "Flexible",
+    sub: "Cualquiera",
+    icon: Clock,
+  },
 ] as const;
 
 const BOOKING_STEPS = [
   {
-    step: '01',
-    title: 'Elige tu consulta y horario',
-    desc: 'Selecciona el servicio y la jornada que te resulte más cómoda.',
+    step: "01",
+    title: "Elige tu consulta y horario",
+    desc: "Selecciona el servicio y la jornada que te resulte más cómoda.",
   },
   {
-    step: '02',
-    title: 'Genera tu mensaje listo',
-    desc: 'El sistema organiza tus datos sin que tengas que redactar nada desde cero.',
+    step: "02",
+    title: "Genera tu mensaje listo",
+    desc: "El sistema organiza tus datos sin que tengas que redactar nada desde cero.",
   },
   {
-    step: '03',
-    title: 'Confirmación humana directa',
-    desc: 'Dra. Anny o su equipo te responderán personalmente con la hora exacta asignada.',
+    step: "03",
+    title: "Confirmación humana directa",
+    desc: "Dra. Anny o su equipo te responderán personalmente con la hora exacta asignada.",
   },
 ];
 
@@ -55,37 +69,52 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
   prefilledNote,
   onChangeNote,
 }) => {
-  const [patientName, setPatientName] = useState('');
-  const [preferredDay, setPreferredDay] = useState('');
+  const [patientName, setPatientName] = useState("");
+  const [preferredDay, setPreferredDay] = useState("");
   const [preferredShift, setPreferredShift] = useState<string>(SHIFTS[0].id);
   const [nameError, setNameError] = useState(false);
+  const [serviceError, setServiceError] = useState(false);
 
-  const selectedService =
-    CLINIC_SERVICES.find((s) => s.id === selectedServiceId) ?? CLINIC_SERVICES[0];
+  const selectedService = CLINIC_SERVICES.find((s) => s.id === selectedServiceId);
 
   const formattedMessage = formatBookingMessage({
     patientName,
-    serviceTitle: selectedService.title,
-    preferredDay: preferredDay || 'Próxima fecha disponible',
+    serviceTitle: selectedService ? selectedService.title : 'Por definir en consulta',
+    preferredDay: preferredDay || "Próxima fecha disponible",
     preferredShift,
     notes: prefilledNote,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    let hasError = false;
+
     if (!patientName.trim()) {
       setNameError(true);
+      hasError = true;
+    }
+    if (!selectedServiceId) {
+      setServiceError(true);
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
+
     setNameError(false);
+    setServiceError(false);
     const url = buildWhatsAppUrl(formattedMessage);
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const todayIso = new Date().toISOString().split('T')[0];
+  const todayIso = new Date().toISOString().split("T")[0];
 
   return (
-    <section id="reservar" className="relative overflow-hidden bg-white py-16 sm:py-28 border-t border-slate-200/70">
+    <section
+      id="reservar"
+      className="relative overflow-hidden bg-white py-16 sm:py-28 border-t border-slate-200/70"
+    >
       {/* Decorative ambient lighting */}
       <div
         className="pointer-events-none absolute top-10 right-10 h-72 w-72 rounded-full bg-[#0D9488]/10 blur-3xl"
@@ -110,8 +139,9 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
             </h2>
 
             <p className="mt-3 text-base leading-relaxed text-[#475569]">
-              Atendemos tu consulta de forma personalizada. Completa tus datos y enviaremos una
-              solicitud clara a nuestro WhatsApp de atención en Ocaña.
+              Atendemos tu consulta de forma personalizada. Completa tus datos y
+              enviaremos una solicitud clara a nuestro WhatsApp de atención en
+              Ocaña.
             </p>
 
             {/* Desktop steps */}
@@ -125,17 +155,21 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                     {item.step}
                   </span>
                   <div>
-                    <p className="text-sm font-bold text-[#0F4C81]">{item.title}</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-[#64748B]">{item.desc}</p>
+                    <p className="text-sm font-bold text-[#0F4C81]">
+                      {item.title}
+                    </p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-[#64748B]">
+                      {item.desc}
+                    </p>
                   </div>
                 </li>
               ))}
             </ol>
 
             {/* Live WhatsApp chat simulator */}
-            <div className="mt-8 overflow-hidden rounded-3xl border border-[#CBD5E1] bg-white shadow-[0_18px_45px_rgba(15,76,129,0.1)]">
+            <div className="mt-8 overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-sm">
               {/* WhatsApp header */}
-              <div className="flex items-center justify-between bg-gradient-to-r from-[#0F4C81] to-[#135994] px-4 py-3 text-white">
+              <div className="flex items-center justify-between bg-[#0F4C81] px-4 py-3 text-white">
                 <div className="flex items-center gap-3">
                   <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white font-bold font-editorial text-lg border border-white/20">
                     AL
@@ -175,7 +209,9 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
               {/* WhatsApp footer bar */}
               <div className="flex items-center justify-between border-t border-slate-200 bg-white px-4 py-2.5 text-[0.72rem] text-[#64748B]">
                 <span>Se enviará a: +57 314 239 8816</span>
-                <span className="font-semibold text-[#0D9488]">Listo para enviar</span>
+                <span className="font-semibold text-[#0D9488]">
+                  Listo para enviar
+                </span>
               </div>
             </div>
           </div>
@@ -185,25 +221,22 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="overflow-hidden rounded-[2rem] border border-[#CBD5E1] bg-white shadow-[0_24px_60px_rgba(15,76,129,0.12)]"
+              className="overflow-hidden rounded-[2rem] border border-[#E2E8F0] bg-white shadow-sm"
             >
               {/* Form top clinical accent bar */}
-              <div className="h-2 w-full bg-gradient-to-r from-[#0F4C81] via-[#0D9488] to-[#14B8A6]" />
+              <div className="h-2 w-full bg-[#0F4C81]" />
 
               <div className="p-6 sm:p-9">
                 <div className="border-b border-[#E2E8F0] pb-5">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-[#0D9488]" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
-                      Confirmación sin intermediarios
-                    </span>
-                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+                    Confirmación sin intermediarios
+                  </span>
                   <h3 className="mt-1 font-editorial text-2xl font-semibold text-[#0F4C81] sm:text-3xl">
                     Datos para tu cita en Ocaña
                   </h3>
                   <p className="mt-1 text-xs text-[#64748B]">
-                    Sin registros complicados ni pagos previos. Confirmamos tu hora directamente por
-                    WhatsApp.
+                    Sin registros complicados ni pagos previos. Confirmamos tu
+                    hora directamente por WhatsApp.
                   </p>
                 </div>
 
@@ -229,8 +262,8 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                       placeholder="Ej. María Camila Pérez"
                       className={`mt-2 w-full rounded-2xl border bg-[#F8FAFC] px-4 py-3.5 text-base sm:text-sm text-[#1E293B] placeholder-slate-400 outline-none transition-all focus:bg-white focus:ring-2 ${
                         nameError
-                          ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-200'
-                          : 'border-[#CBD5E1] focus:border-[#0F4C81] focus:ring-[#0F4C81]/15'
+                          ? "border-rose-400 focus:border-rose-500 focus:ring-rose-200"
+                          : "border-[#E2E8F0] focus:border-[#0D9488] focus:ring-[#0D9488]/15"
                       }`}
                     />
                     {nameError && (
@@ -247,20 +280,35 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                       className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F4C81]"
                     >
                       <Stethoscope className="h-4 w-4 text-[#0D9488]" />
-                      Servicio o consulta requerida
+                      Servicio o consulta requerida *
                     </label>
                     <select
                       id="booking-service"
                       value={selectedServiceId}
-                      onChange={(e) => onChangeServiceId(e.target.value)}
-                      className="mt-2 w-full rounded-2xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3.5 text-base sm:text-sm font-semibold text-[#1E293B] outline-none transition-all focus:border-[#0F4C81] focus:bg-white focus:ring-2 focus:ring-[#0F4C81]/15"
+                      onChange={(e) => {
+                        onChangeServiceId(e.target.value);
+                        if (serviceError) setServiceError(false);
+                      }}
+                      className={`mt-2 w-full rounded-2xl border bg-[#F8FAFC] px-4 py-3.5 text-base sm:text-sm font-semibold outline-none transition-all focus:bg-white focus:ring-2 ${
+                        !selectedServiceId ? 'text-[#64748B]' : 'text-[#1E293B]'
+                      } ${
+                        serviceError
+                          ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-200'
+                          : 'border-[#CBD5E1] focus:border-[#0F4C81] focus:ring-[#0F4C81]/15'
+                      }`}
                     >
+                      <option value="">Selecciona un servicio...</option>
                       {CLINIC_SERVICES.map((service) => (
-                        <option key={service.id} value={service.id}>
+                        <option key={service.id} value={service.id} className="text-[#1E293B]">
                           {service.title} — {service.duration}
                         </option>
                       ))}
                     </select>
+                    {serviceError && (
+                      <p className="mt-1.5 text-xs font-semibold text-rose-600">
+                        Por favor selecciona el servicio o tipo de consulta que necesitas.
+                      </p>
+                    )}
                   </div>
 
                   {/* Preferred date + Shift */}
@@ -279,7 +327,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                         min={todayIso}
                         value={preferredDay}
                         onChange={(e) => setPreferredDay(e.target.value)}
-                        className="mt-2 w-full min-w-0 appearance-none rounded-2xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3.5 text-base sm:text-sm text-[#1E293B] outline-none transition-all focus:border-[#0F4C81] focus:bg-white focus:ring-2 focus:ring-[#0F4C81]/15"
+                        className="mt-2 w-full min-w-0 appearance-none rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3.5 text-base sm:text-sm text-[#1E293B] outline-none transition-all focus:border-[#0D9488] focus:bg-white focus:ring-2 focus:ring-[#0D9488]/15"
                       />
                     </div>
 
@@ -299,14 +347,16 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                               onClick={() => setPreferredShift(shift.id)}
                               className={`flex flex-col items-center justify-center gap-1 rounded-2xl border p-2 text-xs font-bold transition-all ${
                                 active
-                                  ? 'border-2 border-[#0D9488] bg-[#CCFBF1]/40 text-[#0F766E] shadow-sm'
-                                  : 'border-[#CBD5E1] bg-[#F8FAFC] text-[#64748B] hover:border-[#0F4C81]/40 hover:bg-white'
+                                  ? "border-2 border-[#0D9488] bg-[#F0FDFA] text-[#0D9488] shadow-xs"
+                                  : "border-[#E2E8F0] bg-[#F8FAFC] text-[#64748B] hover:border-[#0F4C81]/30 hover:bg-white"
                               }`}
                             >
                               <Icon
-                                className={`h-4 w-4 ${active ? 'text-[#0D9488]' : 'text-[#64748B]'}`}
+                                className={`h-4 w-4 ${active ? "text-[#0D9488]" : "text-[#64748B]"}`}
                               />
-                              <span className="leading-none">{shift.label}</span>
+                              <span className="leading-none">
+                                {shift.label}
+                              </span>
                               <span className="text-[0.62rem] font-normal text-slate-500">
                                 {shift.sub}
                               </span>
@@ -334,7 +384,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                       value={prefilledNote}
                       onChange={(e) => onChangeNote(e.target.value)}
                       placeholder="Ej. Uso lentes blandos hace un año y siento resequedad; o requiero examen para cambio de gafas..."
-                      className="mt-2 w-full rounded-2xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 text-base sm:text-sm text-[#1E293B] placeholder-slate-400 outline-none transition-all focus:border-[#0F4C81] focus:bg-white focus:ring-2 focus:ring-[#0F4C81]/15"
+                      className="mt-2 w-full rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-base sm:text-sm text-[#1E293B] placeholder-slate-400 outline-none transition-all focus:border-[#0D9488] focus:bg-white focus:ring-2 focus:ring-[#0D9488]/15"
                     />
                   </div>
 
@@ -342,15 +392,15 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#0D9488] to-[#0F766E] px-6 py-4 text-base font-bold text-white shadow-[0_14px_30px_rgba(13,148,136,0.38)] transition-all hover:scale-[1.01] hover:from-[#0F766E] hover:to-[#115E59] hover:shadow-[0_18px_36px_rgba(13,148,136,0.5)] active:scale-[0.98]"
+                      className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-[#0D9488] px-6 py-4 text-base font-bold text-white shadow-md shadow-[#0D9488]/25 transition-all hover:bg-[#0F766E] hover:scale-[1.01] active:scale-[0.98]"
                     >
                       <MessageCircle className="h-5 w-5" />
                       <span>Agendar mi cita por WhatsApp</span>
                       <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </button>
                     <p className="mt-2.5 text-center text-[0.72rem] text-[#64748B]">
-                      Se abrirá tu aplicación de WhatsApp con el mensaje ya estructurado para enviar
-                      con un solo toque.
+                      Se abrirá tu aplicación de WhatsApp con el mensaje ya
+                      estructurado para enviar con un solo toque.
                     </p>
                   </div>
                 </div>

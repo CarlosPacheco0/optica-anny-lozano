@@ -10,10 +10,10 @@ import { FaqSection } from './components/FaqSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { CLINIC_SERVICES, type ClinicService } from './config/clinic';
+import { type ClinicService } from './config/clinic';
 
 export function App() {
-  const [selectedServiceId, setSelectedServiceId] = useState<string>(CLINIC_SERVICES[0].id);
+  const [selectedServiceId, setSelectedServiceId] = useState<string>('');
   const [bookingNote, setBookingNote] = useState<string>('');
 
   const handleSelectServiceForBooking = (service: ClinicService) => {
